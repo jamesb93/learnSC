@@ -1,11 +1,10 @@
 //// Interact with some JSON business ////
-Array
 
 (
-~json_data = File.readAllString("/Users/jamesbradbury/learnSC/json_dummy.json").parseYAML;
+~json_data = File.readAllString("/Users/james/dev/learnSC/json_dummy.json").parseYAML;
 )
 
-// Referenace a single parent node in the json //
+// Reference a single parent node in the json //
 (
 ~json_data["94"];
 )
@@ -20,6 +19,7 @@ Array
 )
 )
 
+// Query the  number of pairs associated to a key //
 (
 ~json_data["5"].size;
 )
