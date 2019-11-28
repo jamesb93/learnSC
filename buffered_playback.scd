@@ -1,7 +1,6 @@
 //// Playback using buffers loaded from a big folder of sounds ////
 
 (
-s.options.device = 1;
 s.boot;
 s.options.numBuffers = 1024;
 /*s.options.numBuffers = 21000;
@@ -10,7 +9,7 @@ s.options.numBuffers;*/
 
 (
 s.waitForBoot({
-    ~folder = PathName("/Users/jamesbradbury/Desktop/interim/");
+    ~folder = PathName("/Users/james/dev/data_bending/groupings/spines/spines_short/");
 	~soundsDict = Dictionary.new;
     ~noiseSamps =  Array.new;
 
