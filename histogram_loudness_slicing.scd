@@ -1,3 +1,5 @@
+
+
 (
 // Read Files and allocate buffers
 ~source = Buffer.read(
@@ -56,6 +58,11 @@ Routine.run({
         onThreshold:~quiet_thresh,
         offThreshold:~quiet_thresh
     );
+    ~idx.loadToFloatArray(
+		action:{arg x; ~onsets = x.unlace(2)[0]}
+	);
+    ~source.plot;
+
 
 }, clock:AppClock);
 )
