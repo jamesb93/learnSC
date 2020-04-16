@@ -9,11 +9,8 @@
 ~stats = Buffer.new(s);
 )
 
-{PlayBuf.ar(1, ~source).dup}.play
-
-// Get the 0, 5, 10 percentiles
 (
-Routine{
+Routine.run({
 
 	FluidBufLoudness.process(
 		s,
@@ -23,28 +20,14 @@ Routine{
 		hopSize:4410
 	);
 
-	FluidBufStats.process(
-		s,
-		~loudness,
-		stats:~stats,
-		low:0,
-		middle:5,
-		high:10,
-		numDerivs:0,
-		action:{"Finished Stats analysis".postln;}
+	~loudness.loadToFloatArray(
+		action:{arg x; ~data = x.unlace(2)[0]}
 	);
 
-	// Round the values in the buffer to the nearest 5dB
-	~loudness.numFrames.do{
-		arg i;
-		~loudness.get(
-			i,
-			{
-                |x|~loudness.set(i, x.round(5));
-            }
-		);
-	}
-}.play;
-)
+	s.sync;
 
-// Now make a histogram of the rounded buffer values
+	~histogram = ~data.histo(24);
+	{~histogram.plot;}.defer;
+
+}, clock:AppClock);
+)
