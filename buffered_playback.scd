@@ -2,25 +2,25 @@
 
 (
 s.boot;
-s.options.numBuffers = 1024;
+s.options.numBuffers = 4000;
 /*s.options.numBuffers = 21000;
 s.options.numBuffers;*/
 )
 
-(
-s.waitForBoot({
-    ~folder = PathName("/Users/james/dev/data_bending/groupings/spines/spines_short/");
-	~soundsDict = Dictionary.new;
-    ~noiseSamps =  Array.new;
 
-	~folder.entries.do(
-        {
-		arg path;
-        ~noiseSamps = ~noiseSamps.add(Buffer.read(s, path.fullPath));
-        }
-    );
-    postln("---- Samples Loaded ----");
+(
+var folder;
+~src =  Array.new;
+
+folder = PathName("C:/Users/james/Documents/Max 8/Packages/FluidCorpusManipulation/media");
+folder.entries.do({
+    arg path;
+    if (path.extension == "wav") {
+        ~src = ~src.add(Buffer.read(s, path.fullPath));
+        postln("Loading " ++ path.fileName);
+    };
 });
+postln("---- Samples Loadead ----")
 )
 
 (
@@ -33,7 +33,7 @@ SynthDef.new(\reader, {
 }).add;
 )
 
-Synth.new(\reader, [\buf, ~noiseSamps[1]]);
+Synth.new(\reader, [\buf, ~src[3]]);
 s.freeAll;
 s.meter;
 
