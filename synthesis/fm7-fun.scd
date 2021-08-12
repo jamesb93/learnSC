@@ -1,4 +1,5 @@
 (
+s.options.blockSize_(32);
 SynthDef(\fm7noise, {
 
 	var sig;
