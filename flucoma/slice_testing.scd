@@ -1,11 +1,12 @@
 // Compare the difference between startframes
 
 (
-~source = Buffer.read(
+/*~source = Buffer.read(
 	s,
 	File.realpath(
 		FluidBufStats.class.filenameSymbol
-    ).dirname.withTrailingSlash ++ "../AudioFiles/Tremblay-ASWINE-ScratchySynth-M.wav");
+    ).dirname.withTrailingSlash ++ "../AudioFiles/Tremblay-ASWINE-ScratchySynth-M.wav");*/
+~source = Buffer.read(s, "/Users/james/song_mono.wav");
 ~idx = Buffer.new(s);
 )
 
@@ -52,3 +53,4 @@ Routine.run({
 
 };)
 )
+~source.query;
